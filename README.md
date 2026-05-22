@@ -1,4 +1,4 @@
-# 📝 Bid-Writer-Pro
+# 📝 BiaoShu-Writer-Pro
 
 > 智能标书生成专家 - 通用行业投标文件自动生成工具
 
