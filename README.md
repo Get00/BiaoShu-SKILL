@@ -251,9 +251,7 @@ A: 系统会自动检查字数并提示，可以通过以下方式增加字数�
 1. 增加 `--total-pages` 参数值
 2. 在 `templates/` 中添加更多行业知识文档
 3. 人工补充详细内容
-
 ---
-
 ## 📊 版本历史
 
 | 版本 | 日期 | 更新内容 |
@@ -264,19 +262,6 @@ A: 系统会自动检查字数并提示，可以通过以下方式增加字数�
 | v1.9 | 2026-05-21 | 优化内容生成逻辑，中间文件保存到debug文件夹 |
 | v1.8 | 2026-05-21 | 修复PDF转换编码问题 |
 | v1.5 | 2026-05-21 | 添加Markdown转换功能 |
-
----
-
-## 🤝 贡献
-
-欢迎提交Issue和Pull Request！
-
-1. Fork 本项目
-2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开一个Pull Request
-
 ---
 
 ## 📄 许可证
@@ -292,12 +277,7 @@ A: 系统会自动检查字数并提示，可以通过以下方式增加字数�
 - [Trea](https://www.trae.ai/) - AI辅助开发平台
 
 ---
-
-## 📧 联系方式
-
-- 项目主页：[https://github.com/your-username/bid-writer-pro](https://github.com/your-username/bid-writer-pro)
-- 问题反馈：[Issues](https://github.com/your-username/bid-writer-pro/issues)
-
+<img width="1448" height="1086" alt="ad0bb0c2-2043-4fd8-b2d4-10b28c1ca63b" src="https://github.com/user-attachments/assets/112788d6-8d19-4ecc-8763-7ffa1e285fe1" />
 ---
 
-<p align="center">Made with ❤️ by Bid-Writer-Pro Team</p>
+<p align="center">Made with ❤️ by BiaoShu-Writer-Pro And Trea</p>
