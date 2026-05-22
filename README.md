@@ -278,6 +278,7 @@ A: 系统会自动检查字数并提示，可以通过以下方式增加字数�
 
 ---
 <img width="1448" height="1086" alt="ad0bb0c2-2043-4fd8-b2d4-10b28c1ca63b" src="https://github.com/user-attachments/assets/112788d6-8d19-4ecc-8763-7ffa1e285fe1" />
----
 
 <p align="center">Made with ❤️ by BiaoShu-Writer-Pro And Trea</p>
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/Get00/BiaoShu-SKILL.svg?variant=adaptive)](https://starchart.cc/Get00/BiaoShu-SKILL)
