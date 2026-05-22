@@ -1,0 +1,14 @@
+# 标书智能生成专家 - 依赖库列表
+# 版本：v1.1 (2026-05-21)
+
+# 核心依赖
+python-docx>=0.8.11
+pdfplumber>=0.7.0
+openpyxl>=3.0.0
+PyPDF2>=3.0.0
+jieba>=0.42.1
+pandas>=1.3.0
+
+# Windows特定依赖（仅在Windows系统上需要）
+# 用于解析旧版Word文档(.doc)
+pywin32>=306; platform_system == "Windows"

@@ -1,0 +1,63 @@
+{
+  "name": "bid-writer-pro",
+  "version": "2.2.0",
+  "description": "标书智能生成专家 - 通用行业投标文件自动生成工具",
+  "author": "TreaSkill",
+  "created": "2026-05-21",
+  "updated": "2026-05-21",
+  "tags": ["标书", "投标", "技术标", "文档生成", "Word", "Markdown"],
+  "category": "文档处理",
+  "requirements": {
+    "python": ">=3.8",
+    "packages": [
+      "python-docx>=0.8.11",
+      "pdfplumber>=0.7.0",
+      "openpyxl>=3.0.0",
+      "PyPDF2>=3.0.0",
+      "jieba>=0.42.1",
+      "pandas>=1.3.0",
+      "pywin32>=306;platform_system=='Windows'"
+    ]
+  },
+  "input_formats": [".pdf", ".doc", ".docx", ".txt", ".xlsx", ".xls"],
+  "output_format": ".docx",
+  "scripts": {
+    "main": "scripts/bid_writer_pipeline.py",
+    "parse": "scripts/parse_bid_file.py",
+    "convert_to_md": "scripts/convert_to_md.py",
+    "extract_scoring": "scripts/extract_scoring.py",
+    "extract_requirements": "scripts/extract_requirements.py",
+    "extract_bid_name": "scripts/extract_bid_name.py",
+    "generate_outline": "scripts/generate_outline.py",
+    "generate_content": "scripts/generate_content.py",
+    "check_word_count": "scripts/check_word_count.py",
+    "humanizer": "scripts/humanizer.py",
+    "convert_to_docx": "scripts/convert_to_docx.py",
+    "convert_pdf_to_md": "scripts/convert_pdf_to_md.py",
+    "convert_doc_to_md": "scripts/convert_doc_to_md.py",
+    "format_docx": "scripts/format_docx.py",
+    "generate_placeholder": "scripts/generate_placeholder.py",
+    "generate_cover": "scripts/generate_cover.py",
+    "generate_toc": "scripts/generate_toc.py"
+  },
+  "templates": {
+    "guide": "templates/00_标书制作指南.md",
+    "knowledge": "templates/bid_doc_*.md",
+    "bid_knowledge": "templates/bid_knowledge_*.md"
+  },
+  "format_standards": ["government", "enterprise", "highway"],
+  "features": [
+    "招标文件解析",
+    "文档转Markdown（方便AI阅读）",
+    "评分标准提取",
+    "关键要求识别",
+    "标书名称提取",
+    "大纲生成",
+    "内容生成",
+    "字数检查",
+    "AI去痕处理",
+    "占位符生成",
+    "Word文档生成",
+    "格式规范化"
+  ]
+}
