@@ -1,288 +1,167 @@
-# 📝 BiaoShu-Writer-Pro
+# 📝 BiaoShu-Writer-Pro v2.3（标书智能生成专家 · 响应文件格式保全版）
 
-> 智能标书生成专家 - 通用行业投标文件自动生成工具
+> 智能标书生成专家 —— 在原作品基础上强化了**招标文件响应格式的忠实保留**，并补齐**离线自足能力**。
 
-[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/your-username/bid-writer-pro)
-[![Python](https://img.shields.io/badge/python-3.8+-green.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8%2B-green.svg)](https://www.python.org/)
 
-**一句话介绍**：发送招标文件，自动生成符合行业标准的专业投标书。
-
----
-
-## ✨ 核心特性
-
-- 🔄 **全自动流程** - 从招标文件解析到标书生成，14个步骤全自动执行
-- 🏭 **多行业支持** - 支持IT/信息化、建筑工程、医疗健康、教育服务、制造业、物流运输、咨询服务等8大行业
-- 🤖 **智能行业检测** - 自动识别招标文件所属行业，生成符合行业特点的专业内容
-- 📈 **自我进化** - 遇到新行业时自动创建行业指南，逐步完善知识库
-- 📄 **多格式支持** - 支持PDF、DOCX、DOC、TXT、XLSX格式的招标文件
-- 📊 **Markdown转换** - 自动将招标文件转换为Markdown格式，方便AI阅读和处理
-- 🏷️ **智能占位符** - 自动标记图片、表格、资质等非文字内容的位置
-- 📁 **独立输出** - 每次运行生成带时间戳的独立文件夹，避免文件混乱
+**一句话**：发送招标文件，自动生成符合行业标准的专业投标书；**当招标文件附有响应文件格式时，把它当填空题——题干一字不改，只填横线。**
 
 ---
 
-## 🎯 适用场景
+## ⚠️ 来源与授权声明（请先阅读）
 
-| 场景 | 说明 |
-|------|------|
-| 企业投标部门 | 快速生成技术标，将编写时间从3-5天缩短到几小时 |
-| 投标代理公司 | 批量处理多个招标文件，提高工作效率 |
-| 跨行业投标 | 自动适配不同行业特点，无需配备各行业专业人员 |
-| 标书模板积累 | 自动创建行业指南，逐步形成企业知识资产 |
-| 标书质量检查 | 对照标准模板，检查标书完整性和规范性 |
+本作品是以下开源项目的**修改版本（Derivative Work）**：
 
----
+| 项目 | 内容 |
+|---|---|
+| 原作品 | **BiaoShu-SKILL**（内部名 `bid-writer-pro` / `BiaoShu-writer-pro`） |
+| 作者 | **Get00 / TreaSkill** |
+| 仓库 | https://github.com/Get00/BiaoShu-SKILL |
+| 许可 | **Apache License 2.0** |
 
-## 🏭 支持行业
+依据 Apache License 2.0 分发。原作品的版权与署名声明已完整保留。
 
-| 行业 | 关键词 | 指南文件 |
-|------|--------|----------|
-| 🖥️ IT/信息化 | 软件、系统集成、云计算、大数据 | `00_标书制作指南.md` |
-| 🏗️ 建筑工程 | 建筑、施工、装修、市政 | `industry_建筑工程.md` |
-| 🏥 医疗健康 | 医疗、医院、设备、药品 | `industry_医疗健康.md` |
-| 📚 教育服务 | 教育、学校、教学、培训 | `industry_教育服务.md` |
-| 🏭 制造业 | 制造、设备、自动化、智能制造 | `industry_制造业.md` |
-| 🚚 物流运输 | 物流、运输、仓储、配送 | `industry_物流运输.md` |
-| 💼 咨询服务 | 咨询、管理、审计、法律 | `industry_咨询服务.md` |
-| 📁 通用行业 | 其他行业（自动创建指南） | 自动生成 |
+- 许可证全文见 [`LICENSE`](LICENSE)
+- **本版全部改动清单见 [`NOTICE`](NOTICE)**（Apache 2.0 第 4(b) 条要求被修改文件带显著声明，该文件逐项列出）
+- 修改过的主要文件（`SKILL.md`、`scripts/format_docx.py`、`scripts/bid_writer_pipeline.py`、`templates/00_标书制作指南.md`、`requirements.txt`、`_meta.json`）已在文件头或 NOTICE 中标注
+
+> 备注：原仓库 README 标注为 MIT，但其 `LICENSE` 文件正文为 **Apache License 2.0**。
+> 本版以 `LICENSE` 文件为准，按 Apache 2.0 处理。
 
 ---
 
-## 🚀 快速开始
+## 🆕 本版（v2.3）相对原作品增加了什么
 
-### 环境要求
+### 1. 响应文件格式 = 填空题原则（核心改动）
 
-- Python 3.8+
-- 操作系统：Windows / macOS / Linux
+原版本会把你自己的"政府标书标准"（仿宋 四号 28磅）套到成品上。但如果招标文件**已经给了响应文件格式**，那样做等于**改动了题干**——正文里明确列过：招标文件提供格式的，必须**优先套用并保持文字内容、字体字号、排版不变**，否则可能构成"对格式文件的实质性修改"而被否决。
 
-### 安装
+本版据此新增：
+
+- **SKILL.md 顶部新增最高优先级章节**，立下六条铁律（逐字保留题干、保留下划线、照抄原字体字号、底板填空不重建、必须读真实排版、违规后果）
+- **执行流程新增"第0步：检查响应文件格式"**，成为不可跳过的前置步骤
+- **`format_docx.py` 新增 `tender` 标准（保留原格式）并设为默认**，取代原来默认套用政府标准的行为
+- **`bid_writer_pipeline.py` 新增步骤 1.6**：自动检测招标文件是否附有响应文件格式，命中即**强制切换为 tender** 并告警
+
+### 2. 三个全新工具
+
+| 工具 | 作用 |
+|---|---|
+| `scripts/extract_format.py` | **抓格式** —— 把招标文件的"投标/响应文件格式"章节整段抽出来，原样不改一字 |
+| `scripts/apply_bid_template.py` | **底板填空** —— 以该章节为底板，只往下划线 run 和空白单元格里填内容 |
+| `scripts/check_format_drift.py` | **格式漂移检查** —— 逐段比对成品与招标文件，检出题干删改与字体/字号/下划线/行距漂移 |
+
+### 3. 离线自足能力（不依赖 MCP）
+
+原版本依赖宿主环境的文件与文档工具；本版改为**自带纯 Python 工具**，换台电脑装好 pip 依赖即可运行：
+
+| 工具 | 作用 |
+|---|---|
+| `scripts/fsutil.py` | 文件读写：读/写文本（自动识别 UTF-8/**GBK**）、列目录、通配符查找、正则搜索、复制、删除 |
+| `scripts/doc_io.py` | 文档读写：**Word / Excel / PPT / PDF** 四类格式的读与写，含 `.doc`/`.xls` 老格式转换 |
+| `scripts/office/` | 结构化文档工具包（按选区提取/改写 docx/xlsx/pptx/pdf，源文件只读） |
+| `scripts/verify_env.py` | 环境自检 + 一键补依赖 |
+
+---
+
+## 🚀 安装
 
 ```bash
-# 克隆项目
-git clone https://github.com/your-username/bid-writer-pro.git
-cd bid-writer-pro
+# 1) 环境自检（列出缺什么并给出修复命令）
+python scripts/verify_env.py
 
-# 安装依赖
+# 2) 自动补齐依赖
+python scripts/verify_env.py --install
+#    或
 pip install -r requirements.txt
 
-# 或运行安装脚本
-python install.py --auto
+# 3) 再次自检确认
+python scripts/verify_env.py
 ```
 
-### 基本使用
+**依赖（全部纯 Python，pip 可装）**：python-docx、openpyxl、python-pptx、pdfplumber、pypdf、reportlab、jieba、pandas；Windows 上另有可选的 pywin32（用于 `.doc`/`.xls` 转换）。
+
+---
+
+## 📖 使用
+
+### 常规：从招标文件生成技术标
 
 ```bash
-# 最简单的用法（自动检测行业）
-python scripts/bid_writer_pipeline.py "招标文件.pdf"
-
-# 指定输出目录
-python scripts/bid_writer_pipeline.py "招标文件.pdf" --output-dir ./标书输出
-
-# 指定行业
-python scripts/bid_writer_pipeline.py "招标文件.pdf" --industry construction
-
-# 列出支持的行业
-python scripts/bid_writer_pipeline.py --list-industries
-
-# 检查环境
-python scripts/check_environment.py
+python scripts/bid_writer_pipeline.py "招标文件.pdf" --output-dir ./输出
 ```
 
----
+> 若招标文件含响应文件格式，步骤 1.6 会自动把格式标准切为 `tender` 并提示。
 
-## 📁 输出结构
+### 格式保全三件套
 
-```
-招标文件所在目录/
-├── 招标文件.pdf                        # 原始招标文件
-└── XX项目技术标.docx                   # ⭐ 最终标书（与招标文件同目录）
-
-output/
-└── {时间戳}_{招标文件名}/              # 示例：20260522_143025_XX项目招标/
-    └── debug/                          # 所有中间文件
-        ├── template_knowledge.md       # 模板知识
-        ├── bid_document.md             # 招标文件Markdown版
-        ├── industry_detection.json     # 行业检测结果
-        ├── scoring_criteria.json       # 评分标准
-        ├── key_requirements.json       # 关键要求
-        ├── outline.json                # 标书大纲
-        ├── word_count_check.json       # 字数检查
-        └── chapters/                   # 章节内容
-            ├── 00_封面.md
-            ├── 00_目录.md
-            ├── 01_项目概述.md
-            ├── 02_技术方案.md
-            └── ...
-```
-
----
-
-## 🔍 工作流程
-
-```text
-招标文件 → Markdown转换 → 行业检测 → 评分标准提取
-    ↓
-大纲生成 → 内容生成 → 字数检查 → AI去痕
-    ↓
-占位符插入 → 封面生成 → 目录生成 → Word生成 → 格式规范化
-    ↓
-最终标书（与招标文件同目录）
-```
-
-### 详细步骤
-
-| 步骤 | 说明 | 输出文件 |
-|------|------|----------|
-| 0 | 通读模板知识 | `template_knowledge.md` |
-| 1 | 解析招标文件 | `bid_document.md` |
-| 1.5 | 检测行业类型 | `industry_detection.json` |
-| 2 | 提取评分标准 | `scoring_criteria.json` |
-| 3 | 提取关键要求 | `key_requirements.json` |
-| 4 | 提取标书名称 | - |
-| 5 | 生成大纲 | `outline.json` |
-| 6 | 生成内容 | `chapters/*.md` |
-| 7 | 字数检查 | `word_count_check.json` |
-| 8 | AI去痕 | `humanized_*.md` |
-| 9 | 插入占位符 | - |
-| 10 | 生成封面 | `00_封面.md` |
-| 11 | 生成目录 | `00_目录.md` |
-| 12 | 生成Word | `{项目名称}技术标.docx` |
-| 13 | 格式规范化 | 最终标书 |
-
----
-
-## 📂 项目结构
-
-```
-bid-writer-pro/
-├── SKILL.md                    # SKILL主文档（Trea会读取）
-├── _meta.json                  # 元数据配置
-├── README.md                   # 项目说明文档
-├── requirements.txt            # 依赖库列表
-├── install.py                  # 安装脚本
-├── scripts/                    # 脚本目录
-│   ├── bid_writer_pipeline.py  # 主流程脚本
-│   ├── industry_detector.py    # 行业检测模块
-│   ├── industry_content_generator.py  # 行业内容生成器
-│   ├── parse_bid_file.py       # 招标文件解析
-│   ├── convert_to_md.py        # Markdown转换
-│   ├── extract_scoring.py      # 评分标准提取
-│   ├── extract_requirements.py # 关键要求提取
-│   ├── extract_bid_name.py     # 标书名称提取
-│   ├── generate_outline.py     # 大纲生成
-│   ├── generate_content.py     # 内容生成
-│   ├── check_word_count.py     # 字数检查
-│   ├── humanizer.py            # AI去痕
-│   ├── convert_to_docx.py      # Word转换
-│   ├── format_docx.py          # 格式规范化
-│   ├── generate_placeholder.py # 占位符生成
-│   ├── generate_cover.py       # 封面生成
-│   ├── generate_toc.py         # 目录生成
-│   └── check_environment.py    # 环境检查
-├── templates/                  # 模板知识库
-│   ├── 00_标书制作指南.md      # 通用指南
-│   ├── industry_建筑工程.md    # 建筑工程行业指南
-│   ├── industry_医疗健康.md    # 医疗健康行业指南
-│   ├── industry_教育服务.md    # 教育服务行业指南
-│   ├── industry_制造业.md      # 制造业行业指南
-│   ├── industry_物流运输.md    # 物流运输行业指南
-│   ├── industry_咨询服务.md    # 咨询服务行业指南
-│   └── ...                     # 更多行业指南（自动创建）
-└── references/                 # 参考资料
-    └── industry_configs.json   # 行业配置文件
-```
-
----
-
-## ⚙️ 配置选项
-
-### 命令行参数
-
-| 参数 | 说明 | 默认值 |
-|------|------|--------|
-| `bid_file` | 招标文件路径（必填） | - |
-| `--output-dir, -o` | 输出目录 | `./output` |
-| `--format-standard, -f` | 格式标准 | `government` |
-| `--industry, -i` | 行业代码 | 自动检测 |
-| `--company-profile, -c` | 企业资质文件 | - |
-| `--total-pages, -p` | 预计总页数 | `40` |
-| `--list-industries, -l` | 列出支持的行业 | - |
-
-### 格式标准
-
-| 标准 | 说明 |
-|------|------|
-| `government` | 政府采购标准（默认） |
-| `enterprise` | 企业招标标准 |
-| `highway` | 高速公路工程标准 |
-
----
-
-## 🔧 常见问题
-
-### Q: 如何添加新的行业支持？
-
-A: SKILL会自动创建新行业的指南文件。当检测到未支持的行业时，系统会：
-1. 自动分析招标文件内容
-2. 生成行业指南文件
-3. 保存到 `templates/` 文件夹
-4. 告知用户SKILL已完善
-
-### Q: 如何提高标书质量？
-
-A: 建议：
-1. 确保 `templates/` 文件夹中有足够的行业知识文档
-2. 在生成后人工审核和调整内容
-3. 根据实际情况修改占位符内容
-
-### Q: 支持扫描版PDF吗？
-
-A: 支持，但需要安装OCR依赖：
 ```bash
-pip install pytesseract
-# 还需要安装Tesseract OCR引擎
+# 1) 抓格式：把招标文件里的格式章节原样抽出来
+python scripts/extract_format.py "招标文件.docx" --output "格式.docx"
+
+# 2) 看看底板上有哪些空要填
+python scripts/apply_bid_template.py "招标文件.docx" --section "响应文件格式" --list-blanks
+
+# 3) 按 fields.json 填空（题干、字体、字号、下划线一律不动）
+python scripts/apply_bid_template.py "招标文件.docx" \
+    --section "响应文件格式" --fields fields.json --output "响应文件.docx"
+
+# 4) 复核：成品是否忠实保留了招标文件格式
+python scripts/check_format_drift.py "响应文件.docx" --source "招标文件.docx"
 ```
 
-### Q: 生成的标书字数不够怎么办？
+`fields.json` 示例：
 
-A: 系统会自动检查字数并提示，可以通过以下方式增加字数：
-1. 增加 `--total-pages` 参数值
-2. 在 `templates/` 中添加更多行业知识文档
-3. 人工补充详细内容
+```json
+{
+  "blanks": ["XX省电力有限公司（采购人）", "XX技术有限公司"],
+  "replacements": [
+    {"find": "致：采购人", "replace": "致：XX省电力有限公司（采购人）"}
+  ],
+  "cells": [
+    {"table": 0, "row": 1, "col": 2, "value": "158.00"}
+  ]
+}
+```
+
+### 文档与文件工具
+
+```bash
+python scripts/doc_io.py read "报价清单.xlsx" --json      # 读表格
+python scripts/doc_io.py write-docx "输出.docx" --md 内容.md --table 表格.json
+python scripts/doc_io.py convert "老文件.doc" "新文件.docx"
+python scripts/fsutil.py grep . --pattern "否决" --glob "*.md"
+```
+
 ---
-## 📊 版本历史
 
-| 版本 | 日期 | 更新内容 |
-|------|------|---------|
-| v2.2 | 2026-05-22 | 修复输出目录结构，明确时间戳文件夹说明 |
-| v2.1 | 2026-05-22 | 添加行业指南自动创建功能 |
-| v2.0 | 2026-05-22 | 改造为通用行业版，支持8个行业 |
-| v1.9 | 2026-05-21 | 优化内容生成逻辑，中间文件保存到debug文件夹 |
-| v1.8 | 2026-05-21 | 修复PDF转换编码问题 |
-| v1.5 | 2026-05-21 | 添加Markdown转换功能 |
+## 🧭 定位格式章节的三条实战经验
+
+写这些脚本时踩过的坑，一并记在这里：
+
+1. **章号不只叫"章"** —— 有的写成"第X卷""第X篇""第X部分"，正则要一并支持。
+2. **章标题会出现两次** —— 目录页一次、正文一次，正文里还有"见第五章响应文件格式"这类引用；**整章标题要取最后一次匹配**才落得到正文真标题。
+3. **结束边界必须"同级"** —— 起点是"第六章"就只认下一个"第X章"，**不能**把内部的"第一部分 商务文件"当成边界。
+
 ---
 
-## 📄 许可证
+## ⚠️ 已知限制
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+- **`.doc` / `.xls` 老格式转换**需要本机装有 Microsoft Office（走 COM）或 LibreOffice；两者都没有时会明确报错。
+- **命令行传 JSON 易被 shell 吃掉引号**（尤其 PowerShell）。`--table` / `--json` 同时接受"JSON 字符串"和"JSON 文件路径"，**建议用文件**。
+- `scripts/office/` 工具包取自 Cherry Studio 随附的 `office-transform` 技能，非本作品原创，再分发前请自行核实其许可。
 
 ---
 
 ## 🙏 致谢
 
-- [pdfplumber](https://github.com/jsvine/pdfplumber) - PDF解析库
-- [python-docx](https://github.com/python-openxml/python-docx) - Word文档处理库
-- [Trea](https://www.trae.ai/) - AI辅助开发平台
+- 原作品作者 **Get00 / TreaSkill** —— [BiaoShu-SKILL](https://github.com/Get00/BiaoShu-SKILL)
+- [pdfplumber](https://github.com/jsvine/pdfplumber)、[python-docx](https://github.com/python-openxml/python-docx)、[python-pptx](https://github.com/scanny/python-pptx)、[openpyxl](https://foss.heptapod.net/openpyxl/openpyxl)、[reportlab](https://www.reportlab.com/)、[jieba](https://github.com/fxsjy/jieba)
+- [Trea](https://www.trae.ai/) —— AI 辅助开发平台（原作品使用）
 
 ---
-## Star History
 
-<a href="https://www.star-history.com/?repos=get00%2Fbiaoshu-skill&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=get00/biaoshu-skill&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=get00/biaoshu-skill&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=get00/biaoshu-skill&type=date&legend=top-left" />
- </picture>
-</a>
+## 📄 许可证
+
+[Apache License 2.0](LICENSE) · 改动清单见 [NOTICE](NOTICE)
