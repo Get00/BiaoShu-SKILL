@@ -1,0 +1,72 @@
+BiaoShu-Writer-Pro（标书智能生成专家）
+Copyright 2026 Get00 and contributors
+
+本作品是以下原作品的修改版本（Derivative Work），依据 Apache License 2.0 发布：
+
+    原作品：BiaoShu-SKILL（内部名称 bid-writer-pro / BiaoShu-writer-pro）
+    作者  ：Get00 / TreaSkill
+    仓库  ：https://github.com/Get00/BiaoShu-SKILL
+    许可  ：Apache License, Version 2.0
+
+================================================================================
+修改声明（依据 Apache License 2.0 第 4(b) 条："必须使任何被修改的文件带有显著声明，说明你改动了文件"）
+================================================================================
+
+修改日期：2026-10-13
+版本号  ：2.2.0 → 2.3.0
+
+【一、被修改的原作品文件】
+
+  SKILL.md
+      新增《⚠️ 最高优先级：响应文件格式 = 填空题原则》章节；
+      修正《输出特点》中的格式条目为"格式优先级"；
+      《格式标准》章节增加适用前提并新增 tender 标准条目；
+      执行流程新增"第0步：检查响应文件格式"；
+      新增《定位格式章节的实战经验》与《📦 自足能力包》两节；
+      版本号与描述更新为 v2.3。
+
+  scripts/format_docx.py
+      新增 tender（保留招标文件原格式）标准，并将命令行默认值
+      由 government 改为 tender；docstring 增加警示。
+
+  scripts/bid_writer_pipeline.py
+      构造参数与命令行的默认格式标准由 government 改为 tender；
+      新增步骤 1.6 _step1_6_check_response_format()，自动检测招标文件
+      是否附有响应文件格式并强制保留原格式。
+
+  templates/00_标书制作指南.md
+      《四、标书格式规范》章节增加"仅适用于招标文件未提供响应文件格式"
+      的适用前提警示。
+
+  requirements.txt
+      补充 python-pptx、pypdf、reportlab，并注明各库用途。
+
+  _meta.json
+      版本号更新为 2.3.0；注册新增脚本；format_standards 增加 tender；
+      依赖清单与特性列表更新。
+
+【二、新增文件（原作品中没有）】
+
+  scripts/extract_format.py       抓格式：抽取招标文件的投标/响应文件格式章节
+  scripts/apply_bid_template.py   底板填空：保留原格式，只填下划线与空白单元格
+  scripts/check_format_drift.py   格式漂移检查：检出题干删改与字体字号漂移
+  scripts/doc_io.py               文档读写：Word/Excel/PPT/PDF 四类格式读写
+  scripts/fsutil.py               文件读写：不依赖 MCP 的纯标准库文件操作
+  scripts/verify_env.py           环境自检：检查依赖与自带脚本是否齐全
+  NOTICE                          本文件
+  LICENSE                         Apache License 2.0 全文
+  references/office/*.md          文档工具包使用说明
+
+【三、第三方组件说明】
+
+  scripts/office/ 及其入口 scripts/office_extract.py、scripts/office_patch_copy.py
+      该文档处理工具包取自 Cherry Studio 随附的 office-transform 技能，
+      非原作品内容，也非本次改造者编写。迁移打包时一并收录以保证离线自足。
+      如需再分发，请自行核实其原始许可条款。
+
+  其余第三方依赖（python-docx、openpyxl、python-pptx、pdfplumber、pypdf、
+  reportlab、jieba、pandas、pywin32）均通过 pip 安装，未在本作品中内嵌源码。
+
+================================================================================
+原作品的版权与署名声明已按 Apache License 2.0 第 4(c) 条完整保留。
+================================================================================
